@@ -4,6 +4,7 @@ import EventDetails from "../views/EventDetailView.vue";
 import AirlineDetails from "../views/AirlineDetails.vue";
 import LayoutView from "../views/LayoutView.vue";
 import NotFoundPage from "../views/event/NotFoundPage.vue";
+import EditPass from "../views/event/editPassDetail.vue";
 
 const routes = [
   {
@@ -36,6 +37,12 @@ const routes = [
         path: "/airline/:id",
         name: "AirlineDetails",
         component: AirlineDetails,
+        props: true,
+      },
+      {
+        path: "/edit/:id",
+        name: "EditPassenger",
+        component: EditPass,
         props: true,
       },
     ],

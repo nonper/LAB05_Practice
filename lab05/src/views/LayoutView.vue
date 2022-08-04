@@ -2,14 +2,23 @@
   <div class="home" v-if="event">
     <p>id: {{ event.id }}</p>
     <p>name: {{ event.first_name }} {{ event.last_name }}</p>
-    <router-link :to="{ name: 'EventDetails', params: { id: event.id } }">
-      See Passenger Details
-    </router-link>
-    <router-link
-      :to="{ name: 'AirlineDetails', params: { id: event.airlineId } }"
-    >
-      Airline Details
-    </router-link>
+    <div id="nav">
+      <router-link :to="{ name: 'EventDetails', params: { id: event.id } }">
+        See Passenger Details
+      </router-link>
+      ||
+      <router-link
+        :to="{ name: 'AirlineDetails', params: { id: event.airlineId } }"
+      >
+        Airline Details
+      </router-link>
+      ||
+      <router-link
+        :to="{ name: 'EditPassenger', params: { id: event.airlineId } }"
+      >
+        Edit Passenger Details
+      </router-link>
+    </div>
   </div>
   <router-view :event="event" />
 </template>
