@@ -1,4 +1,7 @@
 <template>
+  <div id="flashMessage" v-if="GStore.flashMessage">
+    {{ GStore.flashMessage }}
+  </div>
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
@@ -24,7 +27,7 @@ export default {
 
 #flashMessage {
   animation-name: yellowfade;
-  animation-duration: 3s;
+  animation-duration: 5s;
 }
 
 #app {

@@ -15,11 +15,11 @@ export default {
       //'You are successfully registered for' + this.event.title
 
       this.GStore.flashMessage =
-        this.event.first_name + "'s detail has been edited.";
+        this.event.first_name + "'s detail update is in progress.";
       setTimeout(() => {
         //After 3 seconds remove it
         this.GStore.flashMessage = "";
-      }, 3000);
+      }, 5000);
 
       this.$router.push({
         name: "EventDetails",
