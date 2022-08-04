@@ -7,7 +7,7 @@ import NotFoundPage from "../views/event/NotFoundPage.vue";
 import EditPass from "../views/event/editPassDetail.vue";
 // import EventService from "@/services/EventService.js";
 // import GStore from "@/store";
-// import NProgress from "nprogress";
+import NProgress from "nprogress";
 const routes = [
   {
     path: "/",
@@ -85,6 +85,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+router.beforeEach(() => {
+  NProgress.start();
+});
+
+router.afterEach(() => {
+  NProgress.done();
 });
 
 export default router;

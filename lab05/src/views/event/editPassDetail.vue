@@ -7,7 +7,6 @@
 
 <script>
 import EventService from "@/services/EventService";
-import NProgress from "nprogress";
 export default {
   props: ["id"],
   inject: ["GStore"],
@@ -37,7 +36,6 @@ export default {
     },
   },
   beforeRouteEnter(routeTo, routeFrom, next) {
-    NProgress.start();
     EventService.getEventPass(parseInt(routeTo.query.id))
       .then((response) => {
         next((comp) => {
@@ -47,9 +45,7 @@ export default {
       .catch(() => {
         next({ name: "NetworkError " });
       })
-      .finally(() => {
-        NProgress.done();
-      });
+      .finally(() => {});
   },
 };
 </script>
