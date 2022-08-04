@@ -9,6 +9,7 @@
 
 <script>
 import EventService from "@/services/EventService";
+import NProgress from "nprogress";
 export default {
   props: ["id"],
   data() {
@@ -16,13 +17,19 @@ export default {
       event: null,
     };
   },
-  created() {
-    EventService.getEventPass(this.id)
-      .then((res) => {
-        this.event = res.data;
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    NProgress.start();
+    EventService.getEventPass(parseInt(routeTo.query.id))
+      .then((response) => {
+        next((comp) => {
+          comp.event = response.data;
+        });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        next({ name: "NetworkError " });
+      })
+      .finally(() => {
+        NProgress.done();
       });
   },
 };

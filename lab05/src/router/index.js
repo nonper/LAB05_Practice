@@ -5,7 +5,9 @@ import AirlineDetails from "../views/AirlineDetails.vue";
 import LayoutView from "../views/LayoutView.vue";
 import NotFoundPage from "../views/event/NotFoundPage.vue";
 import EditPass from "../views/event/editPassDetail.vue";
-
+// import EventService from "@/services/EventService.js";
+// import GStore from "@/store";
+// import NProgress from "nprogress";
 const routes = [
   {
     path: "/",
@@ -31,19 +33,39 @@ const routes = [
         path: "/passenger/:id",
         name: "EventDetails",
         component: EventDetails,
-        props: true,
+        props: (route) => ({ id: route.query.id }),
+        // beforeEnter: (to) => {
+        //   return EventService.getEventPass(to.params.id)
+        //     .then((res) => {
+        //       NProgress.start();
+        //       GStore.event = res.data;
+        //     })
+        //     .catch((error) => {
+        //       if (error.response && error.response.status == 404) {
+        //         return {
+        //           name: "404Resource",
+        //           params: { resource: "event" },
+        //         };
+        //       } else {
+        //         return { name: "NetworkError" };
+        //       }
+        //     })
+        //     .finally(() => {
+        //       NProgress.done();
+        //     });
+        // },
       },
       {
         path: "/airline/:id",
         name: "AirlineDetails",
         component: AirlineDetails,
-        props: true,
+        props: (route) => ({ id: route.query.id }),
       },
       {
         path: "/edit/:id",
         name: "EditPassenger",
         component: EditPass,
-        props: true,
+        props: (route) => ({ id: route.query.id }),
       },
     ],
   },

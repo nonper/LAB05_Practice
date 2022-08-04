@@ -3,19 +3,17 @@
     <p>id: {{ event.id }}</p>
     <p>name: {{ event.first_name }} {{ event.last_name }}</p>
     <div id="nav">
-      <router-link :to="{ name: 'EventDetails', params: { id: event.id } }">
+      <router-link :to="{ name: 'EventDetails', query: { id: event.id } }">
         See Passenger Details
       </router-link>
       ||
       <router-link
-        :to="{ name: 'AirlineDetails', params: { id: event.airlineId } }"
+        :to="{ name: 'AirlineDetails', query: { id: event.airlineId } }"
       >
         Airline Details
       </router-link>
       ||
-      <router-link
-        :to="{ name: 'EditPassenger', params: { id: event.airlineId } }"
-      >
+      <router-link :to="{ name: 'EditPassenger', query: { id: event.id } }">
         Edit Passenger Details
       </router-link>
     </div>
