@@ -9,7 +9,6 @@
 
 <script>
 import EventService from "@/services/EventService";
-import NProgress from "nprogress";
 export default {
   props: ["id"],
   data() {
@@ -18,7 +17,6 @@ export default {
     };
   },
   beforeRouteEnter(routeTo, routeFrom, next) {
-    NProgress.start();
     EventService.getEventAirline(parseInt(routeTo.query.id))
       .then((response) => {
         next((comp) => {
@@ -27,9 +25,6 @@ export default {
       })
       .catch(() => {
         next({ name: "NetworkError " });
-      })
-      .finally(() => {
-        NProgress.done();
       });
   },
 };
