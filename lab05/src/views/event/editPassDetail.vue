@@ -1,21 +1,14 @@
 <template>
-  <div v-if="event">
-    <p>Edit {{ event.first_name }}'s Detail here</p>
+  <div v-if="GStore.event">
+    <p>Edit {{ GStore.event.first_name }}'s Detail here</p>
     <button @click="edit">Save Edit</button>
   </div>
 </template>
 
 <script>
-import EventService from "@/services/EventService";
-import NProgress from "nprogress";
 export default {
-  props: ["id"],
+  props: ["event"],
   inject: ["GStore"],
-  data() {
-    return {
-      event: null,
-    };
-  },
   methods: {
     edit() {
       //Assuming successful API call to register them
@@ -32,24 +25,9 @@ export default {
 
       this.$router.push({
         name: "EventDetails",
-        query: { id: this.event.id },
+        params: { id: this.event.id },
       });
     },
-  },
-  beforeRouteEnter(routeTo, routeFrom, next) {
-    NProgress.start();
-    EventService.getEventPass(parseInt(routeTo.query.id))
-      .then((response) => {
-        next((comp) => {
-          comp.event = response.data;
-        });
-      })
-      .catch(() => {
-        next({ name: "NetworkError " });
-      })
-      .finally(() => {
-        NProgress.done();
-      });
   },
 };
 </script>
